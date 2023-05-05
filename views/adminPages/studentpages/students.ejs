@@ -1,0 +1,44 @@
+<h1 class="text-center bg-dark text-warning my-3 p-4 
+rounded w-40 mx-auto">All Students</h1>
+
+<div class="events-list my-3 text-center">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Student Name</th>
+                <th>User Name</th>
+                <th>Password</th>
+                <th>Academic Number</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <% if(student.length> 0){%>
+            <tbody>
+                <%for(let std of student){%>
+                    <tr>
+                        <th>
+                            <%= std.id%>
+                        </th>
+                        <th>
+                            <%= std.STD_name%>
+                        </th>
+                        <th>
+                            <%= std.STD_username%>
+                        </th>
+                        <th>
+                            <%= std.STD_password%>
+                        </th>
+                        <th>
+                            <%= std.STD_academy%>
+                        </th>
+                        <th>
+                            <a href="/admin/<%= std.id%>/editStd" class="mx-1 btn btn-outline-success">update</a>
+                            <a href="/admin/<%= std.id%>/deleteStd" class="mx-1 btn btn-outline-danger">delete</a>
+                        </th>
+                    </tr>
+                    <%}%>
+            </tbody>
+            <%}%>
+    </table>
+</div>

@@ -1,18 +1,21 @@
 const mongoose = require('mongoose');
 const stdSchema = mongoose.Schema({
-    ST_username: {
+    STD_name: {
         type: String,
         required: true
     },
-    ST_password: {
+    STD_username: {
+        type: String,
+        required: true
+    } ,
+    STD_password: {
         type: String,
         required: true
     },
-    ST_acdademy: {
+    STD_academy: {
         type: Number,
         required: true
     }
-
 });
 
-module.exports = mongoose.model('Student',stdSchema);
+module.exports = mongoose.model('Student', stdSchema);
