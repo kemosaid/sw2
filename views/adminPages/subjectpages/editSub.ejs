@@ -1,0 +1,50 @@
+<h1>Edit Subject</h1>
+<h1 class="bg-light shadow rounded text-center p-4 w-50 mx-auto">
+    Edit Subject</h1>
+
+<section class="form-section my-4">
+    <div class="container">
+        <div class="row mx-auto">
+            <div class="col-sm-9">
+                <form action="/admin/<%= subjects.id%>/edit" method="post">
+                    <div class="form-group my-2">
+                        <label for="SUB_name">Subject Name</label>
+                        <input type="text" class="form-control" name="SUB_name" id="SUB_name"
+                            value="<%= subjects.SUB_name%>">
+                    </div>
+                    <div class="form-group my-2">
+                        <label for="SUB_code">Subject Code</label>
+                        <input type="text" class="form-control" id="price" name="SUB_code"
+                            value="<%= subjects.SUB_code%>">
+                    </div>
+                    
+                      <label for="SUB_depart">Subject Department</label>
+                      <select class="form-select" name="SUB_depart" id="SUB_depart">
+                          <optgroup >
+                            <% if(departments.length> 0){%>
+                                <%for(let dep of departments){%>
+                          <option name="SUB_depart" ><%= dep.DP_code%></option>
+                    <%}%>
+                    <%}%>
+                          </optgroup>
+                        </select>
+                      <label for="SUB_prev">Prerequisite</label>
+                    </select>
+                    <label for="SUB_prev">Prerequisite</label>
+                  <select class="form-select" name="SUB_prev" id="SUB_prev">
+                      <optgroup >
+                          <% if(a.length> 0){%>
+                              <%for(let sub of a){%>
+                        <option name="SUB_prev" ><%= sub.SUB_name%></option>
+                  <%}%>
+                  <%}%>
+                        
+                      </optgroup>
+                    </select>
+            </div>
+            <input type="submit" value="Edit Subject" class="btn btn-outline-success mt-2">
+            </form>
+        </div>
+    </div>
+    </div>
+</section>
