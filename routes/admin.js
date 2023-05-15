@@ -21,5 +21,12 @@ router.post('/addStd', adminController.storeStd)
 router.get('/:id/editStd', adminController.editStd)
 router.post('/:id/editStd', adminController.updateStd)
 router.get('/:id/deleteStd', adminController.deleteStd)
+router.get('/showDoc', adminController.showDoc)
+router.get('/addDoc', adminController.addDoc)
+router.post('/addDoc', adminController.storeDoc)
+router.get('/:id/editDoc', adminController.editDoc)
+router.post('/:id/editDoc', adminController.updateDoc)
+router.get('/:id/deleteDoc', adminController.deleteDoc)
+
 
 module.exports = router;

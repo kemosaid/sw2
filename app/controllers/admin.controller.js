@@ -1,5 +1,6 @@
 const Departments = require('../models/departments'),
  Subjects = require('../models/subjects'),
+ Doctors = require('../models/doctors'),
  Students=require('../models/student');
 
 
@@ -91,7 +92,8 @@ function addsub(req, res) {
     Subjects.find({})
 
     .then((subjects) => {
-        Departments.find({}).then((departments)=>{
+        Departments.find({})
+        .then((departments)=>{
         res.render('adminPages/subjectpages/addSubject.ejs', { subjects,departments })})
     })
     .catch((err) => console.log(err.message));
@@ -239,6 +241,80 @@ function deleteStd(req, res) {
         })
         .catch(err => console.log(err.message))
 }
+function showDoc(req,res){
+    Doctors.find({})
+    .then((doctor)=>{
+        res.render("adminPages/doctorpages/doctors.ejs",{doctor})
+    })
+    .catch((err)=>{console.log(err.message)})
+}
+function addDoc(req, res) {
+    res.render('adminPages/doctorpages/addDoctor.ejs')
+}
+function storeDoc(req, res) {
+    //take data from form
+    const doctor = Doctors({
+        DOC_name: req.body.DOC_name,
+        DOC_username: req.body.DOC_username,
+        DOC_password: req.body.DOC_password,
+        DOC_sub: req.body.DOC_sub,
+
+    });
+
+    Doctors.find({ $or: [{ Doc_name: doctor.Doc_name }, { Doc_sub: doctor.Doc_sub }] })
+        .then((data) => {
+            if (data.length == 0) {
+                //save data in database
+                doctor.save()
+                    .then(doctor => {
+                        console.log(doctor)
+                        res.redirect('/admin/showDoc')
+                    })
+                    .catch(err => {
+                        console.log(err.message)
+                        res.redirect('/admin/addDoc')
+                    })
+            } else {
+                console.log('Doctor found');
+                res.redirect('/admin/showDoc')
+            }
+        })
+        .catch(err => console.log(err.message));
+}
+function editDoc(req, res) {
+    const id = req.params.id;
+    Doctors.findById(id)
+        .then((doctor) => {
+            res.render('adminPages/doctorpages/editDoctor.ejs', { doctor  })
+           
+        })
+        .catch((err) => console.log(err.message))
+}
+function updateDoc(req, res) {
+    const id = req.params.id;
+    Doctors.findById(id)
+        .then((doctor) => {
+            doctor.DOC_name= req.body.DOC_name,
+            doctor.DOC_sub= req.body.DOC_sub,
+            doctor.DOC_username= req.body.DOC_username,
+            doctor.DOC_password= req.body.DOC_password,
+
+
+            doctor.save();
+            res.redirect('/admin/showDoc')
+        })
+        .catch(err => console.log(err.message))
+}
+function deleteDoc(req, res) {
+    const id = req.params.id;
+    Doctors.findById(id)
+        .then((doctor) => {
+            doctor.deleteOne({ _id: id })
+            res.redirect('/admin/showDoc')
+        })
+        .catch(err => console.log(err.message))
+}
+
 module.exports = {
     adminHome,
     showDept,
@@ -258,5 +334,11 @@ module.exports = {
     storeStd,
     editStd,
     updateStd,
-    deleteStd
+    deleteStd,
+    showDoc,
+    addDoc,
+    storeDoc,
+    editDoc,
+    updateDoc,
+    deleteDoc,
 }

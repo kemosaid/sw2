@@ -1,8 +1,8 @@
 <h1 class="text-center bg-dark text-warning my-3 p-4 
-rounded w-40 mx-auto">All Students</h1>
+rounded w-40 ">All Students</h1>
 
 <div class="events-list my-3 text-center">
-    <table class="table table-bordered table-striped">
+    <table class="table table-dark table-striped">
         <thead>
             <tr>
                 <th>Id</th>
@@ -16,25 +16,25 @@ rounded w-40 mx-auto">All Students</h1>
         <% if(student.length> 0){%>
             <tbody>
                 <%for(let std of student){%>
-                    <tr>
-                        <th>
+                    <tr >
+                        <th class="text-warning">
                             <%= std.id%>
                         </th>
-                        <th>
+                        <th class="text-warning">
                             <%= std.STD_name%>
                         </th>
-                        <th>
+                        <th class="text-warning">
                             <%= std.STD_username%>
                         </th>
-                        <th>
+                        <th class="text-warning">
                             <%= std.STD_password%>
                         </th>
-                        <th>
+                        <th class="text-warning">
                             <%= std.STD_academy%>
                         </th>
                         <th>
-                            <a href="/admin/<%= std.id%>/editStd" class="mx-1 btn btn-outline-success">update</a>
-                            <a href="/admin/<%= std.id%>/deleteStd" class="mx-1 btn btn-outline-danger">delete</a>
+                            <a href="/admin/<%= std.id%>/editStd" class="mx-1  btn btn-success">update</a>
+                            <a href="/admin/<%= std.id%>/deleteStd" class="mx-1 btn btn-danger">delete</a>
                         </th>
                     </tr>
                     <%}%>
