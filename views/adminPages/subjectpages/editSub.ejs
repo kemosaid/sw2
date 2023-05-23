@@ -37,10 +37,19 @@
                               <%for(let sub of a){%>
                         <option name="SUB_prev" ><%= sub.SUB_name%></option>
                   <%}%>
-                  <%}%>
-                        
+                  <%}%>  
                       </optgroup>
                     </select>
+                    <label for="SUB_doctor">Subject Doctor</label>
+                      <select class="form-select" name="SUB_doctor" id="SUB_doctor">
+                          <optgroup >
+                            <% if(doctor.length> 0){%>
+                                <%for(let doc of doctor){%>
+                          <option name="SUB_doctor" ><%= doc.DOC_name%></option>
+                    <%}%>
+                    <%}%>
+                          </optgroup>
+                        </select>
             </div>
             <input type="submit" value="Edit Subject" class="btn btn-outline-success mt-2">
             </form>

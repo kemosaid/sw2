@@ -3,8 +3,9 @@ require('dotenv').config();
 //grab app dependencies
 const express = require('express'),
     app = new express(),
+    enc=require("bcrypt")
     expressLayout = require('express-ejs-layouts'),
-    adminRoutes = require('./routes/admin.js'),
+    adminRoutes = require('./routes/admin.js'), 
     mongoose = require('mongoose'),
     port = process.env.PORT || 3000,
     host = 'localhost';
@@ -32,6 +33,7 @@ app.use(express.static(__dirname + '/assets'));
 app.use(express.urlencoded({ extended: true }));
 //define app routes
 app.use('/admin', adminRoutes);
+
 //server running
 app.listen(port, host, () => {
     console.log(`Server Running on ${host}:${port}`);

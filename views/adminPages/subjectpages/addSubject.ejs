@@ -38,7 +38,16 @@
                           
                         </optgroup>
                       </select>
-
+                      <label for="SUB_doctor">Subject Doctor</label>
+                      <select class="form-select" name="SUB_doctor" id="SUB_doctor">
+                          <optgroup >
+                            <% if(doctor.length> 0){%>
+                                <%for(let doc of doctor){%>
+                          <option name="SUB_doctor" ><%= doc.DOC_name%></option>
+                    <%}%>
+                    <%}%>
+                          </optgroup>
+                        </select>
                     <input type="submit" value="Add Subject" class="btn btn-outline-info mt-2">
                     <br>
                     <h6>`</h6>

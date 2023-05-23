@@ -1,11 +1,13 @@
 <h1 class="text-center bg-dark text-success my-3 p-4 
-rounded w-50 mx-auto">All Departments</h1>
-
-<div class="events-list my-5 text-center">
+rounded w-40 mx-auto">All Departments</h1>
+<div class="d-flex flex-row-reverse">
+    <a class="btn text-success btn-outline-dark justify-content-end" href="/admin/createDept" role="button">Add Department</a></div>
+    
+<div class="events-list my-3 text-center">
     <table class="table table-dark table-striped">
         <thead>
             <tr>
-                <th>Id</th>
+                <!-- <th>Id</th> -->
                 <th>Department Name</th>
                 <th>Department Code</th>
                 <th>actions</th>
@@ -15,9 +17,9 @@ rounded w-50 mx-auto">All Departments</h1>
             <tbody>
                 <%for(let dept of departments){%>
                     <tr>
-                        <th>
+                        <!-- <th>
                             <%= dept.id%>
-                        </th>
+                        </th> -->
                         <th class="text-success">
                             <%= dept.DP_name%>
                         </th>

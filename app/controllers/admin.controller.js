@@ -1,7 +1,8 @@
 const Departments = require('../models/departments'),
  Subjects = require('../models/subjects'),
  Doctors = require('../models/doctors'),
- Students=require('../models/student');
+ Students=require('../models/student'),
+ enc=require("bcrypt");
 
 
 //admin hame page
@@ -94,7 +95,9 @@ function addsub(req, res) {
     .then((subjects) => {
         Departments.find({})
         .then((departments)=>{
-        res.render('adminPages/subjectpages/addSubject.ejs', { subjects,departments })})
+            Doctors.find({})
+            .then((doctor)=>{res.render('adminPages/subjectpages/addSubject.ejs', { subjects,departments ,doctor})})
+        })
     })
     .catch((err) => console.log(err.message));
     
@@ -106,6 +109,8 @@ function storesub(req, res) {
         SUB_code: req.body.SUB_code,
         SUB_depart: req.body.SUB_depart,
         SUB_prev: req.body.SUB_prev,
+        SUB_doctor: req.body.SUB_doctor,
+
     });
 
     Subjects.find({ $or: [{ SUB_name: subject.SUB_name }, { SUB_code: subject.SUB_code }] })
@@ -133,9 +138,10 @@ function editSub(req, res) {
     Subjects.findById(id)
         .then((subjects) => {
             Departments.find({}).then((departments)=>{
+                Doctors.find({}).then((doctor)=>{
                 Subjects.find({})
                 .then((a)=>{
-                    res.render('adminPages/subjectpages/editSub.ejs', { subjects ,departments,a })
+                    res.render('adminPages/subjectpages/editSub.ejs', { subjects ,departments,a ,doctor})})
 
                 })
                 })
@@ -151,6 +157,7 @@ function updateSub(req, res) {
            subject.SUB_code= req.body.SUB_code,
            subject.SUB_depart= req.body.SUB_depart,
            subject.SUB_prev=req.body.SUB_prev,
+           subject.SUB_doctor=req.body.SUB_doctor,
 
             subject.save();
             res.redirect('/admin/showSub')
@@ -192,6 +199,8 @@ function storeStd(req, res) {
         .then((data) => {
             if (data.length == 0) {
                 //save data in database
+                const salt=enc.genSaltSync(10)
+                student.STD_password=enc.hashSync(req.body.STD_password,salt)
                 student.save()
                     .then(students => {
                         console.log(students)
@@ -221,9 +230,11 @@ function updateStd(req, res) {
     const id = req.params.id;
     Students.findById(id)
         .then((student) => {
+            const salt=enc.genSaltSync(10)
+            
             student.STD_name= req.body.STD_name,
             student.STD_username= req.body.STD_username,
-            student.STD_password= req.body.STD_password,
+            student.STD_password=enc.hashSync(req.body.STD_password,salt),
             student.STD_academy= req.body.STD_academy,
 
 
@@ -257,14 +268,17 @@ function storeDoc(req, res) {
         DOC_name: req.body.DOC_name,
         DOC_username: req.body.DOC_username,
         DOC_password: req.body.DOC_password,
-        DOC_sub: req.body.DOC_sub,
+        
 
     });
+ //Doctors.find({ $or: [{ Doc_name: doctor.Doc_name }, { Doc_sub: doctor.Doc_sub }] })
 
-    Doctors.find({ $or: [{ Doc_name: doctor.Doc_name }, { Doc_sub: doctor.Doc_sub }] })
+ Doctors.find({ $or: [{ DOC_name: doctor.STD_name }, { DOC_username: doctor.DOC_username }] })
         .then((data) => {
             if (data.length == 0) {
                 //save data in database
+                const salt=enc.genSaltSync(10)
+                doctor.DOC_password=enc.hashSync(req.body.DOC_password,salt)
                 doctor.save()
                     .then(doctor => {
                         console.log(doctor)
@@ -294,10 +308,12 @@ function updateDoc(req, res) {
     const id = req.params.id;
     Doctors.findById(id)
         .then((doctor) => {
+            const salt=enc.genSaltSync(10)
+            
             doctor.DOC_name= req.body.DOC_name,
             doctor.DOC_sub= req.body.DOC_sub,
             doctor.DOC_username= req.body.DOC_username,
-            doctor.DOC_password= req.body.DOC_password,
+            doctor.DOC_password=enc.hashSync(req.body.DOC_password,salt),
 
 
             doctor.save();

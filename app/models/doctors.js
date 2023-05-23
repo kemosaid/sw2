@@ -11,11 +11,12 @@ const docSchema = mongoose.Schema({
     DOC_password: {
         type: String,
         required: true
-    },
-    DOC_sub: {
-        type: String,
-        required: true
     }
+    // ,
+    // DOC_sub: {
+    //     type: String,
+    //     required: true
+    // }
 });
 
 module.exports = mongoose.model('Doctors', docSchema);

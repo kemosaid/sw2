@@ -16,6 +16,11 @@ const mongoose = require('mongoose');
     SUB_prev:{
         type: String
        
+    },
+    SUB_doctor:{
+        type:String,
+        required: true
+
     }
 
 });
