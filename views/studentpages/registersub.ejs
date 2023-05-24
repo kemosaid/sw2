@@ -1,0 +1,37 @@
+<h1 class="text-center bg-dark text-info my-3 p-4 
+rounded w-40 mx-auto"> Subjects</h1>
+<div class="d-flex flex-row-reverse">
+    <a class="btn text-info btn-outline-dark justify-content-end" href="/student/myview" role="button">view</a></div>
+    <form action="" method="post">
+        <!-- <div class="form-group my-2">
+            
+            <label for="stdname">student Name</label>
+            <select class="form-select" name="stdname" id="stdname">
+                <optgroup >
+                  <% if(student.length> 0){%>
+                      <%for(let std of student){%>
+                <option name="stdname" ><%= std.STD_name%></option>
+          <%}%>
+          <%}%>
+                </optgroup>
+              </select>
+        </div> -->
+        <div class="form-group my-2">
+
+            <label for="subname">Subject Name</label>
+            <select class="form-select" name="subname" id="subname">
+                <optgroup >
+                  <% if(subject.length> 0){%>
+                      <%for(let sub of subject){%>
+                <option name="subname" ><%= sub.SUB_name%></option>
+          <%}%>
+          <%}%>
+                </optgroup>
+              </select>
+        </div>
+        
+        <input type="submit" value="Add" class="btn btn-outline-info mt-2">
+        <br>
+        <h6>`</h6>
+    </form>
+</div>

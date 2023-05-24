@@ -17,39 +17,49 @@
                         <input type="text" class="form-control" id="price" name="SUB_code"
                             value="<%= subjects.SUB_code%>">
                     </div>
-                    
-                      <label for="SUB_depart">Subject Department</label>
-                      <select class="form-select" name="SUB_depart" id="SUB_depart">
-                          <optgroup >
+
+                    <label for="SUB_depart">Subject Department</label>
+                    <select class="form-select" name="SUB_depart" id="SUB_depart">
+                        <optgroup>
                             <% if(departments.length> 0){%>
                                 <%for(let dep of departments){%>
-                          <option name="SUB_depart" ><%= dep.DP_code%></option>
-                    <%}%>
-                    <%}%>
-                          </optgroup>
-                        </select>
-                      <label for="SUB_prev">Prerequisite</label>
+                                    <option name="SUB_depart">
+                                        <%= dep.DP_code%>
+                                    </option>
+                                    <%}%>
+                                        <%}%>
+                        </optgroup>
                     </select>
                     <label for="SUB_prev">Prerequisite</label>
-                  <select class="form-select" name="SUB_prev" id="SUB_prev">
-                      <optgroup >
-                          <% if(a.length> 0){%>
-                              <%for(let sub of a){%>
-                        <option name="SUB_prev" ><%= sub.SUB_name%></option>
-                  <%}%>
-                  <%}%>  
-                      </optgroup>
+                    </select>
+                    <label for="SUB_prev">Prerequisite</label>
+                    <select class="form-select" name="SUB_prev" id="SUB_prev">
+                        <optgroup>
+                            <option name="SUB_prev">
+                               
+                            </option>
+
+                            <% if(a.length> 0){%>
+                                <%for(let sub of a){%>
+                                    <option name="SUB_prev">
+                                        <%= sub.SUB_name%>
+                                    </option>
+                                    <%}%>
+                                        <%}%>
+                        </optgroup>
                     </select>
                     <label for="SUB_doctor">Subject Doctor</label>
-                      <select class="form-select" name="SUB_doctor" id="SUB_doctor">
-                          <optgroup >
+                    <select class="form-select" name="SUB_doctor" id="SUB_doctor">
+                        <optgroup>
                             <% if(doctor.length> 0){%>
                                 <%for(let doc of doctor){%>
-                          <option name="SUB_doctor" ><%= doc.DOC_name%></option>
-                    <%}%>
-                    <%}%>
-                          </optgroup>
-                        </select>
+                                    <option name="SUB_doctor">
+                                        <%= doc.DOC_name%>
+                                    </option>
+                                    <%}%>
+                                        <%}%>
+                        </optgroup>
+                    </select>
             </div>
             <input type="submit" value="Edit Subject" class="btn btn-outline-success mt-2">
             </form>

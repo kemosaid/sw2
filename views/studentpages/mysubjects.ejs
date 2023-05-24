@@ -1,0 +1,37 @@
+<h1 class="text-center bg-dark text-info my-3 p-4 
+rounded w-40 mx-auto"> Subjects</h1>
+
+
+<div class="events-list  text-center">
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                
+                <th>std name</th>
+                <th>Subject name</th>
+                
+                
+                <th>degree</th>
+                
+            </tr>
+        </thead>
+        <%if(degree.length >0){%>
+            <tbody class="p-4 mx-auto">
+                <%for(let deg of degree){%>
+                    <tr>
+                        
+                        <th>
+                            <%= deg.stdname%>
+                        </th>
+                        <th>
+                            <%= deg.subname%>
+                        </th>
+                        <th>
+                            <%= deg.subdeg%>
+                        </th>
+                      
+                    <%}%>
+            </tbody>
+            <%}%>
+    </table>
+</div>
