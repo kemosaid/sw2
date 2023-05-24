@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
         required: true
     },
     SUB_depart:{
-        type: Object,
+        type: String,
         required: true
     } ,
 

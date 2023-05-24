@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Files</title>
+</head>
+
+<body>
+    <h1>Files</h1>
+    <% if (files.length> 0) { %>
+        <ul>
+            <% files.forEach((file)=> { %>
+                <li>
+                    File Name: <%= file.file_name %>
+                        <a href="/download/<%= file._id %>" download>Download</a>
+                </li>
+                <% }); %>
+        </ul>
+        <% } else { %>
+            <p>No files available</p>
+            <% } %>
+</body>
+
+</html>
